@@ -28,11 +28,10 @@ class CartPage {
 
         List <WebElement> element_name =  driver.findElements
                 (By.cssSelector(".product-item__name"));
-        String item = element_name.get(0).getText();
         List <WebElement> element_add =  driver.findElements
                 (By.cssSelector(".product-item__add-to-cart"));
         element_add.get(0).click();
-        return item;
+        return (element_name.get(0).getText());
     }
 
 }
