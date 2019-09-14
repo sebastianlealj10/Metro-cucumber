@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 
 public class StepDefinitions {
+
     private WebDriver driver;
     private String picked_item;
 

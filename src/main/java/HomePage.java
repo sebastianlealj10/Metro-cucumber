@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 class HomePage {
 
     static void openWebsite(WebDriver driver) {
+
         driver.get("https://www.metro.pe/");
         driver.manage().window().maximize();
         WebElement JavaScript_alert = (new WebDriverWait(driver,10))
@@ -16,6 +17,7 @@ class HomePage {
         JavaScript_alert.click();
     }
     static void searchProduct(WebDriver driver, String string) {
+
         WebElement search_bar = (new WebDriverWait(driver,10))
                 .until(ExpectedConditions.elementToBeClickable
                         (By.id("search-autocomplete-input")));
