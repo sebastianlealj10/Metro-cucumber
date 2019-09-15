@@ -9,6 +9,7 @@ class HomePage {
 
     static void openWebsite(WebDriver driver) {
 
+        /* Navigate to the Metro Website and discart the Javascript alert */
         driver.get("https://www.metro.pe/");
         driver.manage().window().maximize();
         WebElement JavaScript_alert = (new WebDriverWait(driver,10))
@@ -18,6 +19,7 @@ class HomePage {
     }
     static void searchProduct(WebDriver driver, String string) {
 
+        /* Search the desired item*/
         WebElement search_bar = (new WebDriverWait(driver,10))
                 .until(ExpectedConditions.elementToBeClickable
                         (By.id("search-autocomplete-input")));
