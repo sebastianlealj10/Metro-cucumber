@@ -1,7 +1,7 @@
 # Metro-cucumber
 
 This Automation Project implements Cucumber with Junit in a Maven Project.<br/>
-The Architecture choosed was Page Object Model and there are two pages:<br/>
+This Arch is Page Object Model and there are two Object Pages:<br/>
 Home Page and Cart Page, where the iteraccion with the Weblements is performed.<br/>
 
 ## The Feature is described in the file Metro.feature:
