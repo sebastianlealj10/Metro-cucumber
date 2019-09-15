@@ -4,9 +4,9 @@ This Automation Project implements Cucumber with Junit in a Maven Project.<br/>
 The Architecture choosed was Page Object Model and there are two pages:<br/>
 Home Page and Cart Page, where the iteraccion with the Weblements is performed.<br/>
 
-## The Feature is described in the Metro.feature:
+## The Feature is described in the file Metro.feature:
 
-Feature: Add product to the shopping cart<br/>
+>Feature: Add product to the shopping cart<br/>
   As a User of the Metro Webpage<br/>
   I want to search any product<br/>
   and add that product to the shopping cart<br/>
