@@ -2,30 +2,57 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-class HomePage {
+class HomePage{
+    private WebDriver driver;
 
-    static void openWebsite(WebDriver driver) {
+    @FindBy(how = How.ID,using = "onesignal-popover-cancel-button")
+    WebElement javascriptAlert;
 
-        /* Navigate to the Metro Website and discart the Javascript alert */
-        driver.get("https://www.metro.pe/");
-        driver.manage().window().maximize();
-        WebElement JavaScript_alert = (new WebDriverWait(driver,10))
-                .until(ExpectedConditions.elementToBeClickable
-                        (By.id("onesignal-popover-cancel-button")));
-        JavaScript_alert.click();
+    @FindBy(how = How.ID,using = "search-autocomplete-input")
+    WebElement searchBar;
+
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver,this);
+        }
+
+    public void openWebsite() {
+
+        /* Discar the Javascript Alert */
+        WebElement JavaScriptAlert = implicitclickWait(javascriptAlert);
+        clickOnElement(JavaScriptAlert);
     }
-    static void searchProduct(WebDriver driver, String string) {
+    public void searchProduct(String string) {
 
         /* Search the desired item*/
-        WebElement search_bar = (new WebDriverWait(driver,10))
-                .until(ExpectedConditions.elementToBeClickable
-                        (By.id("search-autocomplete-input")));
-        search_bar.sendKeys(string);
-        search_bar.sendKeys(Keys.ENTER);
+        WebElement search_bar = implicitclickWait(searchBar);
+        sendText(search_bar,string);
+        sendEnter(search_bar);
     }
+    private void clickOnElement(WebElement element){
 
+        element.click();
+    }
+    private void sendText(WebElement element, String text){
+
+        element.sendKeys(text);
+    }
+    private void sendEnter(WebElement element){
+
+        element.sendKeys(Keys.ENTER);
+    }
+    private WebElement implicitclickWait(WebElement element){
+
+        return (new WebDriverWait(driver,10))
+                .until(ExpectedConditions.elementToBeClickable
+                        (element));
+    }
 
 }
