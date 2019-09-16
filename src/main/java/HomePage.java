@@ -1,3 +1,4 @@
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Keys;
@@ -26,29 +27,29 @@ class HomePage{
     public void openWebsite() {
 
         /* Discar the Javascript Alert */
-        WebElement JavaScriptAlert = implicitclickWait(javascriptAlert);
+        WebElement JavaScriptAlert = implicitkwaitClick(javascriptAlert);
         clickOnElement(JavaScriptAlert);
     }
     public void searchProduct(String string) {
 
         /* Search the desired item*/
-        WebElement search_bar = implicitclickWait(searchBar);
+        WebElement search_bar = implicitkwaitClick(searchBar);
         sendText(search_bar,string);
         sendEnter(search_bar);
     }
-    private void clickOnElement(WebElement element){
+    private void clickOnElement(@NotNull WebElement element){
 
         element.click();
     }
-    private void sendText(WebElement element, String text){
+    private void sendText(@NotNull WebElement element, String text){
 
         element.sendKeys(text);
     }
-    private void sendEnter(WebElement element){
+    private void sendEnter(@NotNull WebElement element){
 
         element.sendKeys(Keys.ENTER);
     }
-    private WebElement implicitclickWait(WebElement element){
+    private WebElement implicitkwaitClick(WebElement element){
 
         return (new WebDriverWait(driver,10))
                 .until(ExpectedConditions.elementToBeClickable

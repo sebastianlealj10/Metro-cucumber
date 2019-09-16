@@ -31,11 +31,11 @@ class CartPage {
     public String selectProduct() {
 
         /* Search the required WebElements and click them */
-        WebElement iconButton = implicitclickWait(cartButton);
+        WebElement iconButton = implicitwaitClick(cartButton);
         iconButton.click();
-        WebElement openCart = implicitclickWait(opencartButton);
+        WebElement openCart = implicitwaitClick(opencartButton);
         openCart.click();
-        WebElement itemName = implicitclickWait(item);
+        WebElement itemName = implicitwaitClick(item);
         /* Return the item name */
         return (itemName.getText());
     }
@@ -50,12 +50,12 @@ class CartPage {
         return (elementName.get(0).getText());
     }
 
-    private void clickOnElement(WebElement element){
+    private void clickOnElement(@org.jetbrains.annotations.NotNull WebElement element){
 
         element.click();
     }
 
-    private WebElement implicitclickWait(WebElement element){
+    private WebElement implicitwaitClick(WebElement element){
 
         return (new WebDriverWait(driver,10))
                 .until(ExpectedConditions.elementToBeClickable
