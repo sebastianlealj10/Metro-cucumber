@@ -1,3 +1,6 @@
+package PageObjects;
+
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 
-class CartPage {
+public class CartPage {
 
     private WebDriver driver;
 
@@ -18,7 +21,7 @@ class CartPage {
     WebElement cartButton;
 
     @FindBy(how = How.CSS,using = ".minicart__action--buy")
-    WebElement opencartButton;
+    WebElement openCartButton;
 
     @FindBy(how = How.CSS,using = ".product-item__name")
     WebElement item;
@@ -29,19 +32,17 @@ class CartPage {
     }
 
     public String selectProduct() {
-
         /* Search the required WebElements and click them */
-        WebElement iconButton = implicitwaitClick(cartButton);
+        WebElement iconButton = waitClick(cartButton);
         iconButton.click();
-        WebElement openCart = implicitwaitClick(opencartButton);
+        WebElement openCart = waitClick(openCartButton);
         openCart.click();
-        WebElement itemName = implicitwaitClick(item);
+        WebElement itemName = waitClick(item);
         /* Return the item name */
         return (itemName.getText());
     }
 
     public String addItem() {
-
         /* Search the first item in the search */
         List <WebElement> elementName =  driver.findElements(By.cssSelector(".product-item__name"));
         List <WebElement> elementAdd =  driver.findElements(By.cssSelector(".product-item__add-to-cart"));
@@ -50,13 +51,11 @@ class CartPage {
         return (elementName.get(0).getText());
     }
 
-    private void clickOnElement(@org.jetbrains.annotations.NotNull WebElement element){
-
+    private void clickOnElement(@NotNull WebElement element) {
         element.click();
     }
 
-    private WebElement implicitwaitClick(WebElement element){
-
+    private WebElement waitClick(WebElement element) {
         return (new WebDriverWait(driver,10))
                 .until(ExpectedConditions.elementToBeClickable
                         (element));

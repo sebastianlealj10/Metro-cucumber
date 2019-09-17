@@ -1,3 +1,6 @@
+package steps;
+
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -5,6 +8,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import PageObjects.CartPage;
+import PageObjects.HomePage;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +18,6 @@ public class StepDefinitions {
 
     private WebDriver driver;
 
-    private final String URL = "https://www.metro.pe/";
     /* Path to the current project folder */
     private final String Path = System.getProperty("user.dir") + "/src/main/resources/";
     private String picked_item;
@@ -23,6 +27,7 @@ public class StepDefinitions {
         /* Initialize the Webdriver Object */
         System.setProperty("webdriver.chrome.driver", Path + "chromedriver.exe");
         driver = new ChromeDriver();
+        String URL = "https://www.metro.pe/";
         driver.get(URL);
         driver.manage().window().maximize();
     }
@@ -52,13 +57,13 @@ public class StepDefinitions {
     public void the_product_is_added_successfully() {
         /* Initialize the Cart Page and select a product */
         CartPage cartPage = new CartPage(driver);
-        String product = cartPage.selectProduct();
+        String product =cartPage.selectProduct();
         /* Assert the selected item with the item in the cart */
         assertEquals(picked_item,product);
 
     }
     @After
-    public void close(){
+    public void close() {
         /* Quit the Webdriver Object */
         driver.quit();
     }
